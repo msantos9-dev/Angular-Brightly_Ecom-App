@@ -1,0 +1,30 @@
+header {
+    margin-bottom: 25px;
+    .logo {
+      img {
+        width: 80px;
+      }
+    }
+  .logo-text{
+    margin-left: -10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
+    color: rgb(105, 105, 105);
+  }
+    .search {
+      padding-top: 20px;
+    }
+  
+    .navigation {
+      padding-top: 25px;
+    }
+  
+    .tools {
+      padding-top: 25px;
+  
+      .pi {
+        margin-right: 10px;
+      }
+    }
+  }
+  

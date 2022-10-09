@@ -10,10 +10,7 @@
 @import '~primeng/resources/themes/saga-blue/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
-
-
-
-
+@import '~animate.css/animate.css';
 
 //brightly pages
 @import './apps/shop/pages/home-page.scss';
@@ -22,9 +19,12 @@
 //shared components
 @import './apps/shop/shared/header.scss';
 @import './apps/shop/shared/footer.scss';
+@import './apps/shop/shared/nav.scss';
 
 //libraries
 @import './libs/ui/ui.scss';
+@import './libs/products/products.scss';
+@import './libs/users/users.scss';
 
 .container{
     width: 1200px;
