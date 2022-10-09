@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { UiModule } from 'libs/ui/src/lib/ui.module';
+
 import { ProductsModule } from 'libs/products/src/lib/products.module';
+import { UiModule } from 'libs/ui/src/lib/ui.module';
 
 //primeng
 import {AccordionModule} from 'primeng/accordion';
@@ -21,7 +21,7 @@ import { JwtInterceptor } from '@sevenseven/users';
 import { MessageService, ConfirmationService } from 'primeng/api';
 
 @NgModule({
-    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavComponent],
+    declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
     imports: [BrowserModule, AppRoutingModule, UiModule, ProductsModule,
         //primeng
         AccordionModule, BrowserAnimationsModule, HttpClientModule

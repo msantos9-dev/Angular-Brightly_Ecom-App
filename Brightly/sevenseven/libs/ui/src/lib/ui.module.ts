@@ -4,6 +4,7 @@ import { RouterModule, Route } from '@angular/router';
 import { BannerComponent } from './components/banner/banner.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { ButtonModule } from 'primeng/button';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 export const uiRoutes: Route[] = [];
 
@@ -11,11 +12,14 @@ export const uiRoutes: Route[] = [];
     imports: [CommonModule, RouterModule, ButtonModule],
     declarations: [
       BannerComponent,
-      SliderComponent
+      SliderComponent,
+      GalleryComponent
+      
     ],
     exports: [
       BannerComponent,
-      SliderComponent
+      SliderComponent,
+      GalleryComponent
     ]
 })
 export class UiModule {}
