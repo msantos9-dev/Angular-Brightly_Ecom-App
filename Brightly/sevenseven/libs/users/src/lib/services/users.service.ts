@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
-
+import { UsersFacade } from '../state/users.facade';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import * as countriesLib from 'i18n-iso-countries';
 export class UsersService {
   apiURLUsers = environment.apiURL + 'users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiURLUsers);
@@ -51,4 +51,15 @@ export class UsersService {
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
+  initAppSession() {
+    this.usersFacade.buildUserSession();
+  }
+
+  observeCurrentUser() {
+    return this.usersFacade.currentUser$;
+  }
+
+  isCurrentUserAuth() {
+    return this.usersFacade.isAuthenticated$;
+  }
 }

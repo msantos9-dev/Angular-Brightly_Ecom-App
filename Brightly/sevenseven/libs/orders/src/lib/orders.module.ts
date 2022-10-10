@@ -9,7 +9,7 @@ import {BadgeModule} from 'primeng/badge';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersModule } from '@sevenseven/users';
+import { AuthGuard, UsersModule } from '@sevenseven/users';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import {DropdownModule} from 'primeng/dropdown';
@@ -18,14 +18,13 @@ import {InputTextModule} from 'primeng/inputtext';
 
 export const ordersRoutes: Routes = [
 
-  
- 
   {
     path: 'cart',
     component: CartPageComponent
   },
   {
     path: 'checkout',
+    canActivate: [AuthGuard],
     component: CheckoutPageComponent
   },
   {

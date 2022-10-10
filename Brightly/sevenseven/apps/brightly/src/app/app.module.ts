@@ -20,11 +20,18 @@ import { JwtInterceptor } from '@sevenseven/users';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { OrdersModule } from '@sevenseven/orders';
 
+//ngrx
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 @NgModule({
     declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
     imports: [BrowserModule, AppRoutingModule, UiModule, ProductsModule, OrdersModule,
         //primeng
-        AccordionModule, BrowserAnimationsModule, HttpClientModule
+        AccordionModule, BrowserAnimationsModule, HttpClientModule,
+
+        //ngrx
+        StoreModule.forRoot({}), EffectsModule.forRoot([]),
     ],
     providers: [MessageService, ConfirmationService, 
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

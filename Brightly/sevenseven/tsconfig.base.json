@@ -15,12 +15,11 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
+            "@env/*": ["environments/*"],
             "@sevenseven/orders": ["libs/orders/src/index.ts"],
             "@sevenseven/products": ["libs/products/src/index.ts"],
             "@sevenseven/ui": ["libs/ui/src/index.ts"],
-            "@sevenseven/users": ["libs/users/src/index.ts"],
-            "@env/*": ["environments/*"]
-
+            "@sevenseven/users": ["libs/users/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

@@ -41,12 +41,18 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {FieldsetModule} from 'primeng/fieldset';
 import { JwtInterceptor, UsersModule } from '@sevenseven/users';
 
+//ngrx
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 
 
 const PRIMENG_IMPORTS = [ CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule, ConfirmDialogModule, ColorPickerModule, ToastModule, 
     InputNumberModule,DropdownModule, InputSwitchModule, EditorModule, TagModule,InputMaskModule, FieldsetModule]
 
-const MODULES = [BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, UsersModule]
+const MODULES = [BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, UsersModule,
+    //ngrx
+    StoreModule.forRoot({}), EffectsModule.forRoot([]),]
 
 @NgModule({
     declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, 
