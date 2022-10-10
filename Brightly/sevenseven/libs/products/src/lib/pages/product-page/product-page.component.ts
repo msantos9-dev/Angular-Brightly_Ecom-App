@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
+import { CartItem, CartService } from '@sevenseven/orders';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'products-product-page',
@@ -13,9 +15,13 @@ import { ProductsService } from '../../services/products.service';
 export class ProductPageComponent implements OnInit, OnDestroy {
   product: Product | undefined;
   endSubs$: Subject<any> = new Subject();
-  quantity!: number;
+  quantity = 1;
 
-  constructor(private prodService: ProductsService, private route: ActivatedRoute) {}
+  constructor(
+    private prodService: ProductsService, 
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -26,10 +32,18 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.endSubs$.next(0);
     this.endSubs$.complete();
   }
 
-  addProductToCart() {} // eslint-disable-line @typescript-eslint/no-empty-function
+  addProductToCart() {
+    const cartItem: CartItem = {
+      productId: this.product?.id,
+      quantity: this.quantity
+    };
+    this.messageService.add({severity:'success', summary:'Item Successfully added', detail:'You have added product successfully'});
+    this.cartService.setCartItem(cartItem);
+  }// eslint-disable-line @typescript-eslint/no-empty-function
 
   private _getProduct(id: string) {
     this.prodService

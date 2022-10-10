@@ -15,14 +15,14 @@ import { UiModule } from 'libs/ui/src/lib/ui.module';
 import {AccordionModule} from 'primeng/accordion';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavComponent } from './shared/nav/nav.component';
-import { CategoriesService } from 'libs/products/src/lib/services/categories.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '@sevenseven/users';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { OrdersModule } from '@sevenseven/orders';
 
 @NgModule({
     declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
-    imports: [BrowserModule, AppRoutingModule, UiModule, ProductsModule,
+    imports: [BrowserModule, AppRoutingModule, UiModule, ProductsModule, OrdersModule,
         //primeng
         AccordionModule, BrowserAnimationsModule, HttpClientModule
     ],

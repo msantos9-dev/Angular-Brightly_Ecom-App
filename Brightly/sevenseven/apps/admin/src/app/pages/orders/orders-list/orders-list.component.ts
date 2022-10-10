@@ -28,7 +28,7 @@ export class OrdersListComponent implements OnInit {
   private _getOrders(){
     this.ordersService.getOrders().subscribe((orders) => {
       this.orders = orders;
-  })};
+  })}
 
   deleteOrder(orderId: string) {
     this.confirmationService.confirm({
