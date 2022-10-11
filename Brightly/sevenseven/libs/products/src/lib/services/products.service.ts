@@ -8,41 +8,36 @@ import { environment } from '@env/environment';
     providedIn: 'root'
 })
 export class ProductsService {
-
-   productsAPI = environment.apiURL + 'products';
+    productsAPI = environment.apiURL + 'products';
 
     constructor(private http: HttpClient) {}
 
     getProducts(categoriesFilter?: string[]): Observable<Product[]> {
-      let params = new HttpParams();
-      if (categoriesFilter) {
-        params = params.append('categories', categoriesFilter.join(','));
-      }
-      return this.http.get<Product[]>(this.productsAPI, { params: params });
+        let params = new HttpParams();
+        if (categoriesFilter) {
+            params = params.append('categories', categoriesFilter.join(','));
+        }
+        return this.http.get<Product[]>(this.productsAPI, { params: params });
     }
     getProduct(productId: string): Observable<Product> {
-      return this.http.get<Product>(`${this.productsAPI}/${productId}`);
-  }
+        return this.http.get<Product>(`${this.productsAPI}/${productId}`);
+    }
 
     createProduct(productData: FormData): Observable<Product> {
         return this.http.post<Product>(this.productsAPI, productData);
     }
 
-    deleteProduct(productId: string): Observable<Product>{
-      return this.http.delete<Product>(`${this.productsAPI}/${productId}`);
+    deleteProduct(productId: string): Observable<Product> {
+        return this.http.delete<Product>(`${this.productsAPI}/${productId}`);
     }
 
     updateProduct(productData: FormData, productId: string): Observable<Product> {
-      return this.http.put<Product>(`${this.productsAPI}/${productId}`, productData);
-  }
-  getProductsCount(): Observable<number> {
-    return this.http
-      .get<number>(`${this.productsAPI}/get/count`)
-      .pipe(map((objectValue: any) => objectValue.productCount));
-  }
-  getFeaturedProducts(count: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.productsAPI}/get/featured/${count}`);
-  }
-
-
+        return this.http.put<Product>(`${this.productsAPI}/${productId}`, productData);
+    }
+    getProductsCount(): Observable<number> {
+        return this.http.get<number>(`${this.productsAPI}/get/count`).pipe(map((objectValue: any) => objectValue.productCount));
+    }
+    getFeaturedProducts(count: number): Observable<Product[]> {
+        return this.http.get<Product[]>(`${this.productsAPI}/get/featured/${count}`);
+    }
 }

@@ -7,6 +7,7 @@ import { AuthService } from '@sevenseven/users';
 })
 export class SidebarComponent implements OnInit {
 
+  visibleSidebar1: any;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {

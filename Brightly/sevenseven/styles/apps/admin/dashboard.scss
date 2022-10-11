@@ -3,7 +3,7 @@
   text-align: center;
   color: var(--surface-0);
   justify-content: space-between;
-
+  
   .pi {
     font-size: 4em;
     margin-bottom: 15px;
@@ -22,22 +22,28 @@
 .d-orders {
   background-color: #0093e9;
   background-image: linear-gradient(135deg, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%);
-
 }
 
 .d-products {
   background-color: #4158d0;
   background-image: linear-gradient(135deg, #6db3f2 0%,#54a3ee 50%,#3690f0 51%,#1e69de 100%); 
+
 }
 
 .d-users {
   background-color: #3eecac;
   background-image: linear-gradient(135deg, #cb60b3 0%,#c146a1 50%,#a80077 51%,#db36a4 100%);
+
 }
 
 .d-totalsales {
   background-color: #fbda61;
   background-image: linear-gradient(135deg, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%);
+
+}
+
+.card-container {
+ margin: auto;
 }
 
 

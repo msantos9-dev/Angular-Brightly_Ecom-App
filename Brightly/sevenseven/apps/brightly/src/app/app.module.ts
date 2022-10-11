@@ -19,6 +19,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '@sevenseven/users';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { OrdersModule } from '@sevenseven/orders';
+import {ButtonModule} from 'primeng/button';
+
+import {CarouselModule} from 'primeng/carousel';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
@@ -28,7 +31,7 @@ import { EffectsModule } from '@ngrx/effects';
     declarations: [AppComponent, NxWelcomeComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
     imports: [BrowserModule, AppRoutingModule, UiModule, ProductsModule, OrdersModule,
         //primeng
-        AccordionModule, BrowserAnimationsModule, HttpClientModule,
+        AccordionModule, BrowserAnimationsModule, HttpClientModule, CarouselModule , ButtonModule,
 
         //ngrx
         StoreModule.forRoot({}), EffectsModule.forRoot([]),

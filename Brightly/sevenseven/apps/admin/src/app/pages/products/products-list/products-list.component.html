@@ -1,8 +1,8 @@
 <p-toast></p-toast>
 <div class="admin-page">
     <p-card header="Products" subheader="List of Products">
-        <div class="p-grid">
-            <div class="p-col-12">
+        <div class="grid">
+            <div class="col-12">
                 <p-toolbar>
                     <div class="p-toolbar-group-left">
                         <p-button styleClass="p-button-success" icon="pi pi-plus" label="New" routerLink="form"></p-button>
@@ -10,21 +10,20 @@
                 </p-toolbar>
             </div>
         </div>
-        <div class="p-grid">
-            <div class="p-col-12">
+        <div class="grid">
+            <div class="col-12">
                 <p-table
                     [paginator]="true"
                     [rows]="10"
                     [showCurrentPageReport]="true"
-                    responsiveLayout="scroll"
+                    responsiveLayout="stack"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[10, 25, 50]"
                     [value]="products"
-                    responsiveLayout="scroll"
                     styleClass="p-datatable-gridlines"
                 >
                     <ng-template pTemplate="header">
-                        <tr>
+                        <tr class="thead">
                             <th pSortableColumn="name">Name<p-sortIcon field="name"></p-sortIcon></th>
                             <th>Image</th>
                             <th pSortableColumn="price">Price<p-sortIcon field="price"></p-sortIcon></th>
@@ -35,7 +34,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-product>
-                        <tr>
+                        <tr class="tbody">
                             <td>{{ product.name }}</td>
                             <td><img style="height: 50px" [src]="[product.image]" alt="" /></td>
                             <td>{{ product.price }}</td>

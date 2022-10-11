@@ -3,27 +3,28 @@
     height: 100%;
     padding: 0;
     margin: 0px 0px 0px -10px;
+    
   }
 
   &-main {
-    width: calc(100% - 175px);
-    margin-left: 195px;
-    margin-right: 20px;
+    width: 1200px;
+    margin: auto;
+    max-width: 90%;
   }
 
   &-sidebar {
-    position: fixed;
-    width: 195px;
-    background-color: #0a1d31;
+    width: 100;
+    background-color: var(--blue-900);
     height: 100%;
     top: 0;
 
     .logo {
+      justify-content: center;
       padding: 20px;
       width: 100%;
 
       img {
-        max-width: 100%;
+        max-width: 50%;
       }
     }
 
@@ -44,6 +45,7 @@
             width: 100%;
 
             &:hover {
+              cursor: pointer !important;
               background-color: var(--blue-700);
             }
 
@@ -67,3 +69,11 @@
     padding-right: 30px;
   }
 }
+.p-sidebar {
+  background-color: var(--blue-900);
+}
+
+.tbody>td, thead>th {
+  text-align: center;
+}
+

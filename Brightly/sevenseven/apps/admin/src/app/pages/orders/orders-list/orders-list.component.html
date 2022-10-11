@@ -3,20 +3,7 @@
     <p-card header="Orders" subheader="List of all orders">
         <div class="grid">
             <div class="col-12">
-                <p-toolbar>
-                    <div class="p-toolbar-group-left">
-                        <p-button styleClass="p-button-success" icon="pi pi-plus" label="New" routerLink="form">
-                        </p-button>
-                    </div>
-                </p-toolbar>
-            </div>
-        </div>
-        <div class="grid">
-            <div class="col-12">
                 <p-table responsiveLayout="stack" [value]="orders">
-                    <ng-template pTemplate="caption">
-                        Stack
-                    </ng-template>
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th pSortableColumn="name">
