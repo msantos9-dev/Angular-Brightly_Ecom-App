@@ -6,11 +6,11 @@ const TOKEN = 'jwtToken';
   providedIn: 'root'
 })
 export class LocalstorageService {
-  setToken(data:any) {
+  setToken(data : any) {
     localStorage.setItem(TOKEN, data);
   }
 
-  getToken(): any {
+  getToken(): string | any {
     return localStorage.getItem(TOKEN);
   }
 
@@ -45,5 +45,4 @@ export class LocalstorageService {
   private _tokenExpired(expiration: any): boolean {
     return Math.floor(new Date().getTime() / 1000) >= expiration;
   }
-
 }

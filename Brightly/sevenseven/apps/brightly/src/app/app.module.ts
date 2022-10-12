@@ -16,7 +16,7 @@ import {AccordionModule} from 'primeng/accordion';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavComponent } from './shared/nav/nav.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from '@sevenseven/users';
+import { AuthService, JwtInterceptor } from '@sevenseven/users';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { OrdersModule } from '@sevenseven/orders';
 import {ButtonModule} from 'primeng/button';
@@ -37,7 +37,7 @@ import { EffectsModule } from '@ngrx/effects';
         StoreModule.forRoot({}), EffectsModule.forRoot([]),
     ],
     providers: [MessageService, ConfirmationService, 
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, AuthService
     ],
     bootstrap: [AppComponent]
 })

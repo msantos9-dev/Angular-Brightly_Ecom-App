@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
 import { UsersFacade } from '../state/users.facade';
+declare const require: (arg0: string) => countriesLib.LocaleData;
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,9 @@ import { UsersFacade } from '../state/users.facade';
 export class UsersService {
   apiURLUsers = environment.apiURL + 'users';
 
-  constructor(private http: HttpClient, private usersFacade: UsersFacade) {}
+  constructor(private http: HttpClient, private usersFacade: UsersFacade) {
+    countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiURLUsers);
@@ -30,11 +34,17 @@ export class UsersService {
     return this.http.put<User>(`${this.apiURLUsers}/${user.id}`, user);
   }
 
-  deleteUser(userId: string): Observable<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
-    return this.http.delete<any>(`${this.apiURLUsers}/${userId}`); // eslint-disable-line @typescript-eslint/no-explicit-any
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiURLUsers}/${userId}`);
   }
 
-  getCountries(): { id: string; name: any }[] {
+  getUsersCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.apiURLUsers}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.userCount));
+  }
+
+  getCountries(): { id: string; name: string }[] {
     return Object.entries(countriesLib.getNames('en', { select: 'official' })).map((entry) => {
       return {
         id: entry[0],
@@ -43,12 +53,8 @@ export class UsersService {
     });
   }
 
-  
-
-  getUsersCount(): Observable<number> {
-    return this.http
-      .get<number>(`${this.apiURLUsers}/get/count`)
-      .pipe(map((objectValue: any) => objectValue.userCount));
+  getCountry(countryKey: string): string {
+    return countriesLib.getName(countryKey, 'en');
   }
 
   initAppSession() {

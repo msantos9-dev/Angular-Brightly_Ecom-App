@@ -15,7 +15,7 @@ import * as fromUsers from './state/users.reducer';
 import { UsersEffects } from './state/users.effects';
 import { UsersFacade } from './state/users.facade';
 
-const usersRoutes: Routes = [{ path: 'login', component: LoginComponent }];
+const usersRoutes: Routes = [{ path: 'login', component: LoginComponent },{ path: 'register', component: LoginComponent }];
 
 @NgModule({
     imports: [

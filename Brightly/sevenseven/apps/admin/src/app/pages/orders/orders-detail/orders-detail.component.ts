@@ -28,10 +28,10 @@ export class OrdersDetailComponent implements OnInit {
   }
 
   private _mapOrderStatus() {
-    this.orderStatuses = Object.keys(ORDER_STATUS).map((key) => {
+    this.orderStatuses = Object.entries(ORDER_STATUS).map((key) => {
       return {
-        id: key,  
-        name: [parseInt(key)+1]
+        id: key[0],  
+        name: key[1].label
       };
     });
   }

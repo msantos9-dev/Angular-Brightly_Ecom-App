@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService, OrdersService } from '@sevenseven/orders';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CartItemDetailed } from '../../models/cart';
-
-
-
+import { CartService } from '../../services/cart.service';
+import { OrdersService } from '../../services/orders.service';
 @Component({
   selector: 'orders-cart-page',
   templateUrl: './cart-page.component.html',
@@ -27,6 +25,7 @@ export class CartPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.endSubs$.next(this.endSubs$);
     this.endSubs$.complete();
   }
 
