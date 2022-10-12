@@ -14,8 +14,13 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromUsers from './state/users.reducer';
 import { UsersEffects } from './state/users.effects';
 import { UsersFacade } from './state/users.facade';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { ProfileIconComponent } from './components/profile-icon/profile-icon.component';
 
-const usersRoutes: Routes = [{ path: 'login', component: LoginComponent },{ path: 'register', component: LoginComponent }];
+const usersRoutes: Routes = [
+    { path: 'login', component: LoginComponent },
+{ path: 'register', component: LoginComponent },
+{ path: 'profile', component: ProfilePageComponent }];
 
 @NgModule({
     imports: [
@@ -32,8 +37,8 @@ const usersRoutes: Routes = [{ path: 'login', component: LoginComponent },{ path
         StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
         EffectsModule.forFeature([UsersEffects])
     ],
-    declarations: [LoginComponent],
-    exports: [RouterModule],
+    declarations: [LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent],
+    exports: [RouterModule, LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent ],
     providers: [UsersFacade]
 })
 export class UsersModule {}

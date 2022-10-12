@@ -14,6 +14,7 @@ export class ProductsListComponent implements OnInit {
     products: Product[] = [];
     categories: Category[] = [];
     isCategoryPage: boolean | undefined;
+    rangeValues: number[] = [0,1000000];
 
     constructor(private prodService: ProductsService, private catService: CategoriesService, private route: ActivatedRoute) {}
 

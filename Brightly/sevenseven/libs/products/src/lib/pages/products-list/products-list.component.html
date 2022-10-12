@@ -3,8 +3,6 @@
         <div class="col-3" *ngIf="!isCategoryPage">
             <h4>Categories</h4>
             <div class="field-checkbox" *ngFor="let category of categories">
-              
-
                 <p-checkbox name="categories"  
                 value="category.id" 
                  [binary]="true"
@@ -13,6 +11,8 @@
                 (ngModelChange)="categoryFilter()"></p-checkbox>
                 <label for="{{ category.id }}">{{ category.name }}</label>
             </div>
+            <h4>Price Range: {{rangeValues[0] *1000 + ' - ' + rangeValues[1] *1000}}</h4>
+            <p-slider [(ngModel)]="rangeValues" [range]="true"></p-slider>
         </div>
         <div [ngClass]="{ 'col-9': !isCategoryPage, 'col-12': isCategoryPage }">
             <div class="grid" *ngIf="products">

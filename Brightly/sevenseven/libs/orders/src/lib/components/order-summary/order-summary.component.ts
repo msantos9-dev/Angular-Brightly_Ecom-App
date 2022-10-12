@@ -29,6 +29,7 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.endSubs$.complete();
+    window.location.reload();
   }
 
   private _getOrderSummary() {

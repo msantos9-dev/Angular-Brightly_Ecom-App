@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { User } from '@sevenseven/users';
@@ -12,7 +12,7 @@ import { UsersService } from '../../services/users.service';
     templateUrl: './login.component.html',
     styles: []
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
     loginFormGroup!: FormGroup | any;
     isLogin = true;
     isSubmitted = false;
@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
         this.loginForm['phone'].updateValueAndValidity();
         console.log(this.isLogin);
     }
-
+    ngOnDestroy(): void {
+      window.location.reload();
+    }
     private _initLoginForm() {
         this.loginFormGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
             (user) => {
                 this.authError = false;
                 this.localstorageService.setToken(user.token);
-                this.router.navigate(['/']);
+                this.router.navigateByUrl('/');
             },
             (error: HttpErrorResponse) => {
                 this.authError = true;

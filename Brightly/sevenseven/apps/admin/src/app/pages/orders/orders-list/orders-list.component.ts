@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Order, OrdersService } from '@sevenseven/orders';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 import { ORDER_STATUS } from '../order.constants';
 
 @Component({
@@ -10,9 +11,9 @@ import { ORDER_STATUS } from '../order.constants';
   styles: [
   ]
 })
-export class OrdersListComponent implements OnInit {
+export class OrdersListComponent implements OnInit, OnDestroy {
   orders: Order[] = [];
-  
+  endsubs$: Subject<any> = new Subject();
   orderStatus:any = ORDER_STATUS;
   
   constructor(private ordersService: OrdersService,
@@ -20,15 +21,23 @@ export class OrdersListComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private router: Router
 ) { }
+ngOnDestroy() {
+  this.endsubs$.next(this.endsubs$);
+  this.endsubs$.complete();
+}
 
   ngOnInit(): void {
    this._getOrders();
   }
 
-  private _getOrders(){
-    this.ordersService.getOrders().subscribe((orders) => {
-      this.orders = orders;
-  })}
+  _getOrders() {
+    this.ordersService
+      .getOrders()
+      .pipe(takeUntil(this.endsubs$))
+      .subscribe((orders) => {
+        this.orders = orders;
+      });
+  }
 
   deleteOrder(orderId: string) {
     this.confirmationService.confirm({
@@ -36,30 +45,29 @@ export class OrdersListComponent implements OnInit {
       header: 'Delete Order',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.ordersService.deleteOrder(orderId).subscribe(
-          () => {
-            this._getOrders();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Order is deleted!'
-            });
-          },
-          () => {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Order is not deleted!'
-            });
-          }
-        );
-      },
-      reject: () => {
-          this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+        this.ordersService
+          .deleteOrder(orderId)
+          .pipe(takeUntil(this.endsubs$))
+          .subscribe(
+            () => {
+              this._getOrders();
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Order is deleted!'
+              });
+            },
+            () => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Order is not deleted!'
+              });
+            }
+          );
       }
     });
   }
-
   showOrder(orderId:any) {
     this.router.navigateByUrl(`orders/${orderId}`);
   }

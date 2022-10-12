@@ -18,8 +18,12 @@
             <brightly-nav></brightly-nav>
         </div>
         <div class="col-1 tools">
-            <i class="pi pi-user p-text-secondary" style="font-size: 1.5rem"></i>
+            <users-profile-icon></users-profile-icon>
             <orders-cart-icon></orders-cart-icon>
         </div>
+        <div class="col-1 tools">
+            <i class="pi pi-sign-out p-text-secondary" (click)="logoutUser()" style="font-size: 1.5rem"></i>
+        </div>
+     
     </div>
 </header>

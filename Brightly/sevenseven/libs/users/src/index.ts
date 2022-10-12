@@ -13,6 +13,10 @@ export * from './lib/services/localstorage.service';
 
 //pages
 export * from './lib/pages/login/login.component';
+export * from './lib/pages/profile-page/profile-page.component';
+
+//components
+export * from './lib/components/profile-icon/profile-icon.component';
 
 //models
 export * from './lib/models/user';

@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
 import {CarouselModule} from 'primeng/carousel';
+import {SliderModule} from 'primeng/slider';
 
 export const productsRoutes: Routes = [
     {
@@ -45,7 +46,8 @@ export const productsRoutes: Routes = [
         ToastModule,
         FormsModule,
         CheckboxModule,
-        CarouselModule
+        CarouselModule,
+        SliderModule
     ],
     declarations: [
         ProductSearchComponent,
