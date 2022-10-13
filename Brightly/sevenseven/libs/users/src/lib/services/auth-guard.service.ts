@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
 
     if (token) {
       const tokenDecode = JSON.parse(atob(token.split('.')[1]));
-      if ((tokenDecode.isAdmin && !this._tokenExpired(tokenDecode.exp)) || this.router.url.includes('cart')) 
-      token
+      if ((tokenDecode.isAdmin && !this._tokenExpired(tokenDecode.exp)) || this.router.url.includes('cart') || this.router.url.includes('profile')) 
       return true;
     }
 

@@ -35,7 +35,7 @@
                         <div class="col-12 md:col-4">
                             <label for="brand">Brand</label>
                             <div class="p-inputgroup">
-                                <p-inputNumber formControlName="price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                                <p-inputNumber formControlName="price" mode="currency" currency="PHP" locale="en-US"></p-inputNumber>
                             </div>
                             <small *ngIf="productForm['price'].invalid && (productForm['price'].touched || isSubmitted)" class="p-error"
                                 >Price is Required

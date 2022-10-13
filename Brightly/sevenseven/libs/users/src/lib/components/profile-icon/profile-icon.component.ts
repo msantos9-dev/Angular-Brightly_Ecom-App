@@ -6,12 +6,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class ProfileIconComponent implements OnInit, OnDestroy {
+export class ProfileIconComponent implements OnInit {
 
   constructor() { }
-  ngOnDestroy(): void {
-    window.location.reload();
-  }
+
 
   ngOnInit(): void {
     

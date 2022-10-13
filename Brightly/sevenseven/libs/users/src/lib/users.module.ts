@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
-
 import { DividerModule } from 'primeng/divider';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -16,17 +15,16 @@ import { UsersEffects } from './state/users.effects';
 import { UsersFacade } from './state/users.facade';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ProfileIconComponent } from './components/profile-icon/profile-icon.component';
-
-const usersRoutes: Routes = [
-    { path: 'login', component: LoginComponent },
-{ path: 'register', component: LoginComponent },
-{ path: 'profile', component: ProfilePageComponent }];
-
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { RegisterComponent } from './pages/register/register.component';
+import {InputMaskModule} from 'primeng/inputmask';
+import { UserRoutingModule } from './user-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        RouterModule.forChild(usersRoutes),
         FormsModule,
         ReactiveFormsModule,
         ButtonModule,
@@ -35,10 +33,12 @@ const usersRoutes: Routes = [
         DividerModule,
         ToastModule,
         StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.usersReducer),
-        EffectsModule.forFeature([UsersEffects])
+        EffectsModule.forFeature([UsersEffects]), ConfirmDialogModule, InputMaskModule,
+        UserRoutingModule,
+        HttpClientModule,
     ],
-    declarations: [LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent],
+    declarations: [LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent,RegisterComponent],
     exports: [RouterModule, LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent ],
-    providers: [UsersFacade]
+    providers: [UsersFacade, MessageService, ConfirmationService]
 })
-export class UsersModule {}
+export class UsersModule{}

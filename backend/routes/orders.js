@@ -136,6 +136,7 @@ router.get(`/get/count`, async (req, res) => {
   if (!orderCount) {
     res.status(500).json({ success: false });
   }
+
   res.send({
     orderCount: orderCount,
   });

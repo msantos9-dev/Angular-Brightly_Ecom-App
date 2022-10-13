@@ -11,10 +11,12 @@ import { ProductsService } from '../../services/products.service';
     styles: []
 })
 export class ProductsListComponent implements OnInit {
-    products: Product[] = [];
+    products: Product[]  = [];
+    filteredProducts: Product[] = [];
     categories: Category[] = [];
     isCategoryPage: boolean | undefined;
     rangeValues: number[] = [0,1000000];
+    package : any
 
     constructor(private prodService: ProductsService, private catService: CategoriesService, private route: ActivatedRoute) {}
 
@@ -24,7 +26,11 @@ export class ProductsListComponent implements OnInit {
             params['categoryid'] ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
         });
         this._getCategories();
+       
     }
+    handleChange() {
+        this.priceFilter();
+      }
 
     private _getProducts(categoriesFilter?: string[]) {
         this.prodService.getProducts(categoriesFilter).subscribe((resProducts) => {
@@ -42,4 +48,17 @@ export class ProductsListComponent implements OnInit {
         const selectedCategories: any = this.categories.filter((category) => category.checked).map((category) => category.id);
         this._getProducts(selectedCategories);
     }
+    priceFilter(){
+        this.package = this.filteredProducts.filter((item )=> {
+            if(item.price){
+                return (item.price >= this.rangeValues[0] && item.price <=
+                    this.rangeValues[1]) && item.category?.name((name:any)=> this.categories.some((d)=>
+                    d===name))
+
+            }
+        })
+    }
+
+   
+
 }

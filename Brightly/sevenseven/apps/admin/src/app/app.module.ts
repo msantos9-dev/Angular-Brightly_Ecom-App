@@ -1,9 +1,9 @@
 //main imports
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 //components imports
@@ -24,43 +24,80 @@ import { UsersFormComponent } from './pages/users/users-form/users-form.componen
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 //primeng imports
-import {CardModule} from 'primeng/card';
-import {ToolbarModule} from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {InputTextModule} from 'primeng/inputtext';
-import {ToastModule} from 'primeng/toast';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ColorPickerModule} from 'primeng/colorpicker';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {DropdownModule} from 'primeng/dropdown';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {EditorModule} from 'primeng/editor';
+import { CardModule } from 'primeng/card';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
-import {InputMaskModule} from 'primeng/inputmask';
-import {FieldsetModule} from 'primeng/fieldset';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FieldsetModule } from 'primeng/fieldset';
 import { JwtInterceptor, UsersModule } from '@sevenseven/users';
-import {SidebarModule} from 'primeng/sidebar';
-
+import { SidebarModule } from 'primeng/sidebar';
 //ngrx
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+const PRIMENG_IMPORTS = [
+    CardModule,
+    ToolbarModule,
+    ButtonModule,
+    TableModule,
+    InputTextModule,
+    ConfirmDialogModule,
+    ColorPickerModule,
+    ToastModule,
+    InputNumberModule,
+    DropdownModule,
+    InputSwitchModule,
+    EditorModule,
+    TagModule,
+    InputMaskModule,
+    FieldsetModule,
+    SidebarModule
+];
 
-
-const PRIMENG_IMPORTS = [ CardModule, ToolbarModule, ButtonModule, TableModule, InputTextModule, ConfirmDialogModule, ColorPickerModule, ToastModule, 
-    InputNumberModule,DropdownModule, InputSwitchModule, EditorModule, TagModule,InputMaskModule, FieldsetModule, SidebarModule]
-
-const MODULES = [BrowserAnimationsModule, BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, UsersModule,
+const MODULES = [
+    BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    UsersModule,
     //ngrx
-    StoreModule.forRoot({}), EffectsModule.forRoot([]),]
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([])
+];
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CategoriesFormComponent, 
-        ProductsListComponent, ProductsFormComponent, UsersListComponent, UsersFormComponent, OrdersListComponent, OrdersDetailComponent],
-    imports: [...PRIMENG_IMPORTS, ...MODULES ],
-    providers: [MessageService, ConfirmationService, 
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        ShellComponent,
+        SidebarComponent,
+        CategoriesListComponent,
+        CategoriesFormComponent,
+        ProductsListComponent,
+        ProductsFormComponent,
+        UsersListComponent,
+        UsersFormComponent,
+        OrdersListComponent,
+        OrdersDetailComponent
+    ],
+    imports: [...PRIMENG_IMPORTS, ...MODULES],
+    providers: [
+        MessageService,
+        ConfirmationService,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: DEFAULT_CURRENCY_CODE, useValue: 'PHP' }
     ],
     bootstrap: [AppComponent]
 })

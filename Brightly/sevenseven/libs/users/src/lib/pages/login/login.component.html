@@ -1,57 +1,53 @@
 <div class="login-register">
     <div class="login-register-panel">
-        <div class="grid">
-            <div class="col-6">
-                <img src="assets/images/login-photo.png" />
-            </div>
-            <div class="col-6 p-5">
-                <h3>Welcome!</h3>
-                <h2 *ngIf="isLogin">Login Page</h2>
-                <h2 *ngIf="!isLogin">Registration Page</h2>
-                <form [formGroup]="loginFormGroup">
-                    <div class="grid mt-3">
-                        <div *ngIf="!isLogin" class="col-12">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                                <input type="text" formControlName="name" pInputText placeholder="Name" />
-                            </div>
-                            <small *ngIf="loginForm['name'].invalid && (loginForm['name'].touched || isSubmitted)" class="p-error">Name is required </small> 
-                        </div>
-                        <div *ngIf="!isLogin" class="col-12">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
-                                <input type="text" formControlName="phone" pInputText placeholder="Phone Number" />
-                            </div>
-                            <small *ngIf="loginForm['phone'].invalid && (loginForm['phone'].touched || isSubmitted)" class="p-error">Phone number is required </small> 
-                        </div>
-                        <div class="col-12">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                                <input type="text" formControlName="email" pInputText placeholder="Email" />
-                            </div>
-                            <small *ngIf="loginForm['email'].invalid && (loginForm['email'].touched || isSubmitted)" class="p-error">
-                                <span *ngIf="loginForm['email'].errors?.['required']">Email is required</span>
-                                <span *ngIf="loginForm['email'].errors?.['email']">Email is invalid</span>
-                            </small>
-                        </div>
-                        <div class="col-12">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                                <input type="password" formControlName="password" pInputText placeholder="Password" />
-                            </div>
-                            <small *ngIf="loginForm['password'].invalid && (loginForm['password'].touched || isSubmitted)" class="p-error">Password is required </small>
-                          
-                        </div>
-                        <div class="col-12">
-                            <button *ngIf="isLogin" pButton pRipple type="button" label="Log-in" (click)="onSubmit()" class="full-btn p-button-raised p-button-warning"></button>
-                            <button pButton pRipple type="button" label="Register" (click)="_register()"  class="full-btn p-button-raised p-button-secondary"></button>
-                        </div>
-                        <div class="col-12" *ngIf="isSubmitted && authError">
-                            <small class="p-error">{{ authMessage }}</small>
-                        </div>
-                    </div>
-                </form>
-            </div>
+      <div class="grid">
+        <div class="col-6">
+          <div class="logo">
+          <img src="assets/images/login-photo.png"/>
         </div>
+        </div>
+        <div class="col-6 p-5">
+          <h3>Welcome to Brightly!</h3>
+          <h2>Login Page</h2>
+          <form [formGroup]="loginFormGroup">
+            <div class="grid mt-6">
+              <div class="col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                  <input type="text" formControlName="email" pInputText placeholder="Email" />
+                </div>
+                <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error"
+                  ><span *ngIf="loginForm.email.errors.required">email is required</span>
+                  <span *ngIf="loginForm.email.errors.email">email is invalid</span></small
+                >
+              </div>
+              <div class="col-12">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    pInputText
+                    placeholder="Password"
+                  />
+                </div>
+                <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error"
+                  >Password is required
+                </small>
+              </div>
+              <div class="col-12">
+                <p-button label="Submit" styleClass="full-btn" (onClick)="onSubmit()"></p-button>
+              </div> 
+              <div class="col-12" *ngIf="isSubmitted && authError">
+                <small class="p-error">{{ authMessage }}</small>
+              </div>
+              <div class="col-12">
+                <p>Doesn't have an account? <a (click)="registerUser()">Register</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

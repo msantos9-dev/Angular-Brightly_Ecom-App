@@ -18,30 +18,17 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ProductCarouselComponent } from './components/product-carousel/product-carousel.component';
 import {CarouselModule} from 'primeng/carousel';
 import {SliderModule} from 'primeng/slider';
-
-export const productsRoutes: Routes = [
-    {
-        path: 'products',
-        component: ProductsListComponent
-    },
-    {
-        path: 'category/:categoryid',
-        component: ProductsListComponent
-    },
-    {
-        path: 'products/:productid',
-        component: ProductPageComponent
-    }
-];
-
+import {ProductsRoutingModule} from './products-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     imports: [
         CommonModule,
         OrdersModule,
-        RouterModule.forChild(productsRoutes),
+        ProductsRoutingModule,
         ButtonModule,
         InputNumberModule,
         RatingModule,
+        HttpClientModule,
         UiModule,
         ToastModule,
         FormsModule,

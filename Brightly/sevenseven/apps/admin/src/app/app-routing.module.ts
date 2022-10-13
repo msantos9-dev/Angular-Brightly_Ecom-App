@@ -21,7 +21,6 @@ const routes: Routes = [
     children: [
         { path: '', 
         component: DashboardComponent },
-
         //categories
         { path: 'categories', 
         component: CategoriesListComponent },
