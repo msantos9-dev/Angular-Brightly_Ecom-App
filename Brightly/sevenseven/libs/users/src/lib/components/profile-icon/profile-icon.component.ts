@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UsersService } from '@sevenseven/users';
 
 @Component({
   selector: 'users-profile-icon',
@@ -6,13 +7,20 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class ProfileIconComponent implements OnInit {
+export class ProfileIconComponent implements OnInit, OnDestroy {
+ 
 
-  constructor() { }
+
+  constructor(private usersService: UsersService,) { }
+  ngOnDestroy(): void {
+    window.location.reload();
+  }
 
 
   ngOnInit(): void {
-    
+   
   }
+
+ 
 
 }

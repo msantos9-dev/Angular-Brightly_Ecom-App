@@ -39,7 +39,7 @@
                             <td><img style="height: 50px" [src]="[product.image]" alt="" /></td>
                             <td>{{ product.price | currency}}</td>
                             <td>{{ product.countInStock }}</td>
-                            <td>{{ product.category.name }}</td>
+                            <td>{{ product.category?.name }}</td>
                             <td>{{ product.dateCreated | date }}</td>
                             <td>
                                 <p-button (click)="deleteProduct(product.id)" styleClass="p-button-danger mr-2" icon="pi pi-trash"></p-button>

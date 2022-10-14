@@ -49,14 +49,14 @@ export class ProductsListComponent implements OnInit {
         this._getProducts(selectedCategories);
     }
     priceFilter(){
-        this.package = this.filteredProducts.filter((item )=> {
-            if(item.price){
-                return (item.price >= this.rangeValues[0] && item.price <=
-                    this.rangeValues[1]) && item.category?.name((name:any)=> this.categories.some((d)=>
-                    d===name))
+        // this.package = this.filteredProducts.filter((item )=> {
+        //     if(item.price){
+        //         return (item.price >= this.rangeValues[0] && item.price <=
+        //             this.rangeValues[1]) && item.category?.name((name:any)=> this.categories.some((d)=>
+        //             d===name))
 
-            }
-        })
+        //     }
+        // })
     }
 
    

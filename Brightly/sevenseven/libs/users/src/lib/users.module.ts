@@ -21,11 +21,14 @@ import { RegisterComponent } from './pages/register/register.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { UserRoutingModule } from './user-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DropdownModule } from 'primeng/dropdown';
+
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         FormsModule,
+        DropdownModule,
         ReactiveFormsModule,
         ButtonModule,
         InputTextModule,
@@ -38,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule,
     ],
     declarations: [LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent,RegisterComponent],
-    exports: [RouterModule, LoginComponent, ProfilePageComponent, ProfileIconComponent, ProfileIconComponent ],
+    exports: [RouterModule, LoginComponent, ProfileIconComponent, ProfileIconComponent ],
     providers: [UsersFacade, MessageService, ConfirmationService]
 })
 export class UsersModule{}

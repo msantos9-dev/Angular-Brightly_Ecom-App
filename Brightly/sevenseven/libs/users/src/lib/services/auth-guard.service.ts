@@ -1,27 +1,32 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private localStorageToken: LocalstorageService) {}
+    constructor(private router: Router, private localStorageToken: LocalstorageService) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const token = this.localStorageToken.getToken();
-
-    if (token) {
-      const tokenDecode = JSON.parse(atob(token.split('.')[1]));
-      if ((tokenDecode.isAdmin && !this._tokenExpired(tokenDecode.exp)) || this.router.url.includes('cart') || this.router.url.includes('profile')) 
-      return true;
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : any {
+      const token = this.localStorageToken.getToken();
+      if (token) {
+        if (this.router.url.includes('cart')) {
+          return true;
+        } else {
+          const tokenDecode = JSON.parse(atob(token.split('.')[1]));
+          if (tokenDecode.isAdmin && !this._tokenExpired(tokenDecode.exp))
+            return true;
+        }
+      } else {
+        this.router.navigate(['/login']);
+        return false;
+      }
     }
 
-    this.router.navigate(['/login']);
-    return false;
-  }
-
-  private _tokenExpired(expiration:any): boolean {
-    return Math.floor(new Date().getTime() / 1000) >= expiration;
-  }
+    private _tokenExpired(expiration: any): boolean {
+        return Math.floor(new Date().getTime() / 1000) >= expiration;
+    }
 }
